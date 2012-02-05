@@ -1,0 +1,2070 @@
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-04 00:46:36 -1000
+  Processing by WelcomeController#index as HTML
+Redirected to http://localhost:5000/admin/login
+Completed 302 Found in 1ms
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2012-02-04 00:46:37 -1000
+  Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+SQLite3::SQLException: no such table: admin_users: SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+Completed 500 Internal Server Error in 163ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: admin_users: SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1):
+  
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.5ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.7ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (2.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (1.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateAdminNotes (20110818171143)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TABLE "admin_notes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" integer NOT NULL, "resource_type" varchar(255) NOT NULL, "admin_user_id" integer, "admin_user_type" varchar(255), "body" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("admin_notes")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_admin_notes_on_resource_type_and_resource_id" ON "admin_notes" ("resource_type", "resource_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("admin_notes")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_admin_notes_on_admin_user_type_and_admin_user_id" ON "admin_notes" ("admin_user_type", "admin_user_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110818171143')[0m
+Migrating to MoveAdminNotesToComments (20110818171144)
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("admin_notes")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_admin_user_type_and_admin_user_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')
+  [1m[36mSQL (0.5ms)[0m  [1mDROP INDEX "index_admin_notes_on_admin_user_type_and_admin_user_id"[0m
+  [1m[35mSQL (0.3ms)[0m  ALTER TABLE "admin_notes" RENAME TO "active_admin_comments"
+  [1m[36mSQL (0.7ms)[0m  [1mCREATE TEMPORARY TABLE "altered_active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" integer NOT NULL, "resource_type" varchar(255) NOT NULL, "admin_user_id" integer, "author_type" varchar(255), "body" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("altered_active_admin_comments")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "temp_index_admin_notes_on_resource_type_and_resource_id" ON "altered_active_admin_comments" ("resource_type", "resource_id")[0m
+  [1m[35mSQL (0.5ms)[0m  DROP TABLE "active_admin_comments"
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" integer NOT NULL, "resource_type" varchar(255) NOT NULL, "admin_user_id" integer, "author_type" varchar(255), "body" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("altered_active_admin_comments")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('temp_index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_admin_notes_on_resource_type_and_resource_id" ON "active_admin_comments" ("resource_type", "resource_id")[0m
+  [1m[35mSQL (0.5ms)[0m  DROP TABLE "altered_active_admin_comments"
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" integer NOT NULL, "resource_type" varchar(255) NOT NULL, "author_id" integer, "author_type" varchar(255), "body" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("altered_active_admin_comments")
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "temp_index_admin_notes_on_resource_type_and_resource_id" ON "altered_active_admin_comments" ("resource_type", "resource_id")[0m
+  [1m[35mSQL (0.3ms)[0m  DROP TABLE "active_admin_comments"
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" integer NOT NULL, "resource_type" varchar(255) NOT NULL, "author_id" integer, "author_type" varchar(255), "body" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("altered_active_admin_comments")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('temp_index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_admin_notes_on_resource_type_and_resource_id" ON "active_admin_comments" ("resource_type", "resource_id")[0m
+  [1m[35mSQL (0.1ms)[0m  DROP TABLE "altered_active_admin_comments"
+  [1m[36mSQL (0.2ms)[0m  [1mALTER TABLE "active_admin_comments" ADD "namespace" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_active_admin_comments_on_namespace" ON "active_admin_comments" ("namespace")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("active_admin_comments")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_info('index_active_admin_comments_on_namespace')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_active_admin_comments_on_author_type_and_author_id" ON "active_admin_comments" ("author_type", "author_id")
+DEPRECATION WARNING: Active Admin: ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace. (called from up at /Users/Elliott/Rails/ai/db/migrate/20110818171144_move_admin_notes_to_comments.rb:12)
+DEPRECATION WARNING: Active Admin: ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace. (called from up at /Users/Elliott/Rails/ai/db/migrate/20110818171144_move_admin_notes_to_comments.rb:13)
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE active_admin_comments SET namespace='admin'[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818171144')
+Migrating to DeviseCreateAdminUsers (20110818211142)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TABLE "admin_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(128) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "admin_users" WHERE ("admin_users"."email" = 'admin@example.com') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "admin_users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "sign_in_count", "current_sign_in_at", "last_sign_in_at", "current_sign_in_ip", "last_sign_in_ip", "created_at", "updated_at") VALUES ('admin@example.com', '$2a$10$UJxwMGQFDUH8V2RZUqnETeK2wrMlZcsK.0/XeQZY9Ugrype/FyQLu', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, '2012-02-04 11:00:58.514557', '2012-02-04 11:00:58.514557')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("admin_users")[0m
+  [1m[35mSQL (0.5ms)[0m  CREATE UNIQUE INDEX "index_admin_users_on_email" ON "admin_users" ("email")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("admin_users")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_info('index_admin_users_on_email')
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_admin_users_on_reset_password_token" ON "admin_users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818211142')
+Migrating to CreateClients (20110818214436)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TABLE "clients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "address" varchar(255), "phone" varchar(255), "email" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818214436')
+Migrating to CreateInvoices (20110818220252)
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE TABLE "invoices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "code" varchar(255), "notes" text, "terms" text, "status" varchar(255), "due_date" datetime, "tax" float, "discount" float, "client_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818220252')
+Migrating to CreateItems (20110818222838)
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "quantity" integer, "amount" float, "description" varchar(255), "invoice_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818222838')
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_active_admin_comments_on_author_type_and_author_id')[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_info('index_active_admin_comments_on_namespace')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("admin_users")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_info('index_admin_users_on_reset_password_token')[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_info('index_admin_users_on_email')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("clients")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("invoices")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("items")[0m
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2012-02-04 01:13:23 -1000
+  Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  [1m[35mSQL (0.6ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAdminUser Load (1.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/devise-1.4.2/app/views/devise/shared/_links.erb (1.7ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/bundler/gems/active_admin-44b9b2515b04/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (93.6ms)
+Completed 200 OK in 194ms (Views: 99.0ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2012-02-04 01:13:49 -1000
+  Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MRPbc4o/YbkCCa87v1MI1Be3vBRlxBAHKPMLKRpKjzk=", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAdminUser Load (1.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = 'admin@example.com' LIMIT 1[0m
+  [1m[35mAREL (0.5ms)[0m  UPDATE "admin_users" SET "last_sign_in_at" = '2012-02-04 11:13:49.738397', "current_sign_in_at" = '2012-02-04 11:13:49.738397', "last_sign_in_ip" = '127.0.0.1', "current_sign_in_ip" = '127.0.0.1', "sign_in_count" = 1, "updated_at" = '2012-02-04 11:13:49.738936' WHERE "admin_users"."id" = 1
+Redirected to http://localhost:5000/admin
+Completed 302 Found in 212ms
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 01:13:49 -1000
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 5[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE (created_at >= '2012-02-01 00:00:00')
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')
+  [1m[36mInvoice Load (0.2ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/bundler/gems/active_admin-44b9b2515b04/app/views/active_admin/dashboard/index.html.arb (34.2ms)
+Completed 200 OK in 126ms (Views: 45.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/admin/clients" for 127.0.0.1 at 2012-02-04 01:13:57 -1000
+  Processing by Admin::ClientsController#index as HTML
+  [1m[35mSQL (0.6ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAdminUser Load (0.5ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients" ORDER BY "clients".id desc LIMIT 30 OFFSET 0
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/bundler/gems/active_admin-44b9b2515b04/app/views/active_admin/resource/index.html.arb (30.3ms)
+Completed 200 OK in 117ms (Views: 36.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/admin/invoices" for 127.0.0.1 at 2012-02-04 01:13:59 -1000
+  Processing by Admin::InvoicesController#index as HTML
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAdminUser Load (0.7ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM "invoices"[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'draft'[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'sent'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid'[0m
+  [1m[35mInvoice Load (0.2ms)[0m  SELECT "invoices".* FROM "invoices" ORDER BY "invoices".id desc LIMIT 30 OFFSET 0
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients"[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/bundler/gems/active_admin-44b9b2515b04/app/views/active_admin/resource/index.html.arb (220.5ms)
+Completed 200 OK in 254ms (Views: 226.1ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2012-02-04 01:14:02 -1000
+  Processing by Admin::UsersController#index as HTML
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mAdminUser Load (1.0ms)[0m  SELECT "admin_users".* FROM "admin_users" ORDER BY "admin_users".id desc LIMIT 30 OFFSET 0
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "admin_users"[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "admin_users"
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/bundler/gems/active_admin-44b9b2515b04/app/views/active_admin/resource/index.html.arb (103.2ms)
+Completed 200 OK in 133ms (Views: 107.7ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/admin/clients" for 127.0.0.1 at 2012-02-04 01:22:30 -1000
+  Processing by Admin::ClientsController#index as HTML
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" ORDER BY "clients".id desc LIMIT 30 OFFSET 0[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/bundler/gems/active_admin-44b9b2515b04/app/views/active_admin/resource/index.html.arb (85.4ms)
+Completed 200 OK in 116ms (Views: 91.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 01:22:34 -1000
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAdminUser Load (0.6ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 5
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE (created_at >= '2012-02-01 00:00:00')[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')[0m
+  [1m[35mInvoice Load (0.1ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/bundler/gems/active_admin-44b9b2515b04/app/views/active_admin/dashboard/index.html.arb (85.7ms)
+Completed 200 OK in 115ms (Views: 92.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 01:22:37 -1000
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 5[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE (created_at >= '2012-02-01 00:00:00')
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')
+  [1m[36mInvoice Load (0.2ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/bundler/gems/active_admin-44b9b2515b04/app/views/active_admin/dashboard/index.html.arb (84.0ms)
+Completed 200 OK in 114ms (Views: 91.4ms | ActiveRecord: 2.2ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 01:33:13 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAdminUser Load (0.7ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 5[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE (created_at >= '2012-02-01 00:00:00')
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')[0m
+  [1m[35mInvoice Load (0.1ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/dashboard/index.html.arb (116.8ms)
+Completed 200 OK in 599ms (Views: 130.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/javascripts/jquery.min.js" for 127.0.0.1 at 2012-02-04 01:33:14 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.min.js"):
+  
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.9ms)
+
+
+Started GET "/javascripts/jquery-ui.min.js" for 127.0.0.1 at 2012-02-04 01:33:14 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery-ui.min.js"):
+  
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2012-02-04 01:33:14 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started POST "/admin/logout" for 127.0.0.1 at 2012-02-04 01:33:34 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by ActiveAdmin::Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"MRPbc4o/YbkCCa87v1MI1Be3vBRlxBAHKPMLKRpKjzk="}
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+Redirected to http://localhost:5000/admin
+Completed 302 Found in 42ms
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 01:33:34 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 8ms
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2012-02-04 01:33:34 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/devise/shared/_links.erb (1.6ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (312.9ms)
+Completed 200 OK in 340ms (Views: 317.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/javascripts/jquery-ui.min.js" for 127.0.0.1 at 2012-02-04 01:33:34 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery-ui.min.js"):
+  
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.6ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2012-02-04 01:33:34 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started GET "/javascripts/jquery.min.js" for 127.0.0.1 at 2012-02-04 01:33:35 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.min.js"):
+  
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2012-02-04 01:35:13 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/devise/shared/_links.erb (1.7ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (89.7ms)
+Completed 200 OK in 118ms (Views: 93.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2012-02-04 01:35:25 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tBgkJ5BgsjIjDDJbzcDsMsRv3fd20MTs9dAa6dYSqCw=", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = 'admin@example.com' LIMIT 1
+  [1m[36mAREL (0.5ms)[0m  [1mUPDATE "admin_users" SET "current_sign_in_at" = '2012-02-04 11:35:26.018138', "sign_in_count" = 2, "updated_at" = '2012-02-04 11:35:26.018703' WHERE "admin_users"."id" = 1[0m
+Redirected to http://localhost:5000/admin
+Completed 302 Found in 214ms
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 01:35:26 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 5[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE (created_at >= '2012-02-01 00:00:00')
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')[0m
+  [1m[35mInvoice Load (0.1ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/dashboard/index.html.arb (80.8ms)
+Completed 200 OK in 120ms (Views: 91.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/admin/clients" for 127.0.0.1 at 2012-02-04 01:35:36 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::ClientsController#index as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mClient Load (0.2ms)[0m  SELECT "clients".* FROM "clients" ORDER BY "clients".id desc LIMIT 30 OFFSET 0
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/index.html.arb (219.4ms)
+Completed 200 OK in 265ms (Views: 228.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/invoices" for 127.0.0.1 at 2012-02-04 01:35:38 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#index as HTML
+  [1m[36mAdminUser Load (0.6ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" ORDER BY "invoices".id desc LIMIT 30 OFFSET 0
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices"[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'draft'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'sent'[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid'
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients"[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/index.html.arb (463.8ms)
+Completed 200 OK in 511ms (Views: 470.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2012-02-04 01:35:39 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::UsersController#index as HTML
+  [1m[35mAdminUser Load (0.5ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mAdminUser Load (0.9ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" ORDER BY "admin_users".id desc LIMIT 30 OFFSET 0[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "admin_users"
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/index.html.arb (101.2ms)
+Completed 200 OK in 187ms (Views: 107.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/admin/users/new" for 127.0.0.1 at 2012-02-04 01:35:56 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::UsersController#new as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/new.html.arb (84.2ms)
+Completed 200 OK in 122ms (Views: 92.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/admin/clients" for 127.0.0.1 at 2012-02-04 01:36:12 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::ClientsController#index as HTML
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" ORDER BY "clients".id desc LIMIT 30 OFFSET 0[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/index.html.arb (189.1ms)
+Completed 200 OK in 230ms (Views: 195.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin/clients/new" for 127.0.0.1 at 2012-02-04 01:36:16 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::ClientsController#new as HTML
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/new.html.arb (112.2ms)
+Completed 200 OK in 208ms (Views: 118.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/admin/clients" for 127.0.0.1 at 2012-02-04 01:36:31 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::ClientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tBgkJ5BgsjIjDDJbzcDsMsRv3fd20MTs9dAa6dYSqCw=", "client"=>{"name"=>"Paul", "address"=>"1234", "phone"=>"8014728242", "email"=>"paul.e.jolley@gmail.com"}, "commit"=>"Create Client"}
+  [1m[36mAdminUser Load (0.9ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO "clients" ("name", "address", "phone", "email", "created_at", "updated_at") VALUES ('Paul', '1234', '8014728242', 'paul.e.jolley@gmail.com', '2012-02-04 11:36:31.965694', '2012-02-04 11:36:31.965694')
+Redirected to http://localhost:5000/admin/clients/1
+Completed 302 Found in 133ms
+
+
+Started GET "/admin/clients/1" for 127.0.0.1 at 2012-02-04 01:36:31 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::ClientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdminUser Load (0.6ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.2ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."client_id" = 1[0m
+  [1m[35mInvoice Load (0.2ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."client_id" = 1 ORDER BY created_at desc LIMIT 5
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (41.3ms)
+Completed 200 OK in 138ms (Views: 48.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/admin/invoices" for 127.0.0.1 at 2012-02-04 01:36:35 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#index as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" ORDER BY "invoices".id desc LIMIT 30 OFFSET 0
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices"[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'draft'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'sent'[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid'
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients"[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/index.html.arb (394.8ms)
+Completed 200 OK in 437ms (Views: 400.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/admin/invoices/new" for 127.0.0.1 at 2012-02-04 01:36:39 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#new as HTML
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients"[0m
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 1
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/new.html.arb (404.3ms)
+Completed 200 OK in 510ms (Views: 411.4ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/admin/invoices" for 127.0.0.1 at 2012-02-04 01:37:28 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tBgkJ5BgsjIjDDJbzcDsMsRv3fd20MTs9dAa6dYSqCw=", "invoice"=>{"client_id"=>"1", "items_attributes"=>{"1328355406893"=>{"quantity"=>"2", "description"=>"Apple", "amount"=>"30"}}, "code"=>"", "due_date(1i)"=>"", "due_date(2i)"=>"", "due_date(3i)"=>"", "due_date(4i)"=>"", "due_date(5i)"=>"", "tax"=>"", "discount"=>"", "terms"=>"", "notes"=>""}, "commit"=>"Create Invoice"}
+  [1m[36mAdminUser Load (1.0ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients"
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1[0m
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 1
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/new.html.arb (366.1ms)
+Completed 200 OK in 532ms (Views: 371.9ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/admin/invoices" for 127.0.0.1 at 2012-02-04 01:38:06 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tBgkJ5BgsjIjDDJbzcDsMsRv3fd20MTs9dAa6dYSqCw=", "invoice"=>{"client_id"=>"1", "items_attributes"=>{"0"=>{"quantity"=>"2", "description"=>"Apple", "amount"=>"30"}}, "code"=>"INV-1", "status"=>"draft", "due_date(1i)"=>"", "due_date(2i)"=>"", "due_date(3i)"=>"", "due_date(4i)"=>"", "due_date(5i)"=>"", "tax"=>"0", "discount"=>"0", "terms"=>"Leagal stuff", "notes"=>""}, "commit"=>"Create Invoice"}
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO "invoices" ("code", "notes", "terms", "status", "due_date", "tax", "discount", "client_id", "created_at", "updated_at") VALUES ('INV-1', '', 'Leagal stuff', 'draft', NULL, 0.0, 0.0, 1, '2012-02-04 11:38:06.878242', '2012-02-04 11:38:06.878242')
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("quantity", "amount", "description", "invoice_id", "created_at", "updated_at") VALUES (2, 30.0, 'Apple', 1, '2012-02-04 11:38:06.889462', '2012-02-04 11:38:06.889462')[0m
+Redirected to http://localhost:5000/admin/invoices/1
+Completed 302 Found in 228ms
+
+
+Started GET "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 01:38:06 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.5ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (273.2ms)
+Completed 200 OK in 371ms (Views: 279.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/admin/invoices/1/generate_pdf" for 127.0.0.1 at 2012-02-04 01:38:25 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#generate_pdf as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.8ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)[0m
+Sent file /Users/Elliott/Rails/ai/pdfs/invoice-INV-1.pdf (1.1ms)
+Completed 200 OK in 491ms
+
+
+Started GET "/admin/invoices/1/send_invoice" for 127.0.0.1 at 2012-02-04 01:49:52 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#send_invoice as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.7ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+Rendered admin/invoices/send_invoice.html.erb within layouts/active_admin (13.8ms)
+Completed 500 Internal Server Error in 173ms
+
+ActionView::Template::Error (Object must be a Date, DateTime or Time object. nil given.):
+    9: 
+    10: Invoice Code: #{@invoice.code}
+    11: Issued: #{l @invoice.created_at, :format => :short}
+    12: Due: #{l @invoice.due_date, :format => :short}
+    13: Amount: #{number_to_currency @invoice.total}
+    14: 
+    15: 
+  app/views/admin/invoices/send_invoice.html.erb:12:in `_app_views_admin_invoices_send_invoice_html_erb___94088206158305577_70289209450220_721052142363723985'
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.9ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.1ms)
+
+
+Started GET "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 01:52:24 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+  Processing by Admin::InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (1.0ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (74.5ms)
+Completed 500 Internal Server Error in 110ms
+
+ActionView::Template::Error (undefined method `sidebar' for #<ActiveAdmin::Views::Pages::Show:0x007fdaf38a42d0>):
+    1: render renderer_for(:show)
+  app/admin/invoices.rb:165:in `block (2 levels) in <top (required)>'
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.0ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.8ms)
+
+
+Started GET "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 01:53:46 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+  Processing by Admin::InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (22.5ms)
+Completed 500 Internal Server Error in 113ms
+
+ActionView::Template::Error (undefined method `sidebar' for #<ActiveAdmin::Views::Pages::Show:0x007fdaf73e76d0>):
+    1: render renderer_for(:show)
+  app/admin/invoices.rb:165:in `block (2 levels) in <top (required)>'
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.0ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.1ms)
+
+
+Started GET "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 01:54:10 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+  Processing by Admin::InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (119.1ms)
+Completed 200 OK in 212ms (Views: 125.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/admin/invoices/1/send_invoice" for 127.0.0.1 at 2012-02-04 02:28:05 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+  Processing by Admin::InvoicesController#send_invoice as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+Rendered admin/invoices/send_invoice.html.erb within layouts/active_admin (74.3ms)
+Completed 500 Internal Server Error in 132ms
+
+ActionView::Template::Error (Object must be a Date, DateTime or Time object. nil given.):
+    9: 
+    10: Invoice Code: #{@invoice.code}
+    11: Issued: #{l @invoice.created_at, :format => :short}
+    12: Due: #{l @invoice.due_date, :format => :short}
+    13: Amount: #{number_to_currency @invoice.total}
+    14: 
+    15: 
+  app/views/admin/invoices/send_invoice.html.erb:12:in `_app_views_admin_invoices_send_invoice_html_erb___94088206158305577_70289180795180_721052142363723985'
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.5ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.1ms)
+
+
+Started GET "/admin/invoices/1/edit" for 127.0.0.1 at 2012-02-04 02:29:18 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients"[0m
+  [1m[35mClient Load (0.2ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)[0m
+  [1m[35mInvoice Load (0.7ms)[0m  SELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 1
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/edit.html.arb (421.9ms)
+Completed 200 OK in 530ms (Views: 430.1ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 02:29:42 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tBgkJ5BgsjIjDDJbzcDsMsRv3fd20MTs9dAa6dYSqCw=", "invoice"=>{"client_id"=>"1", "items_attributes"=>{"0"=>{"_destroy"=>"0", "quantity"=>"2", "description"=>"Apple", "amount"=>"30.0", "id"=>"1"}}, "code"=>"INV-1", "status"=>"draft", "due_date(1i)"=>"2012", "due_date(2i)"=>"3", "due_date(3i)"=>"1", "due_date(4i)"=>"03", "due_date(5i)"=>"13", "tax"=>"0.0", "discount"=>"0.0", "terms"=>"Leagal stuff", "notes"=>""}, "commit"=>"Update Invoice", "id"=>"1"}
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mInvoice Load (0.6ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" IN (1) AND ("items".invoice_id = 1)[0m
+  [1m[35mAREL (0.4ms)[0m  UPDATE "invoices" SET "due_date" = '2012-03-01 03:13:00.000000', "updated_at" = '2012-02-04 12:29:42.217763' WHERE "invoices"."id" = 1
+Redirected to http://localhost:5000/admin/invoices/1
+Completed 302 Found in 165ms
+
+
+Started GET "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 02:29:42 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)[0m
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (131.9ms)
+Completed 200 OK in 235ms (Views: 138.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/admin/invoices/1/send_invoice" for 127.0.0.1 at 2012-02-04 02:29:45 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#send_invoice as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdminUser Load (0.6ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)[0m
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+Rendered admin/invoices/send_invoice.html.erb within layouts/active_admin (118.5ms)
+Completed 200 OK in 168ms (Views: 126.1ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/admin/invoices/1/dispatch_invoice" for 127.0.0.1 at 2012-02-04 02:30:05 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#dispatch_invoice as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tBgkJ5BgsjIjDDJbzcDsMsRv3fd20MTs9dAa6dYSqCw=", "recipients"=>"paul.e.jolley@gmail.com", "subject"=>"Invoice #INV-1", "message"=>"\r\n\r\n-----------------------------\r\nInvoice Summary\r\n-----------------------------\r\n\r\nInvoice Code: INV-1\r\nIssued: 04 Feb 11:38\r\nDue: 01 Mar 03:13\r\nAmount: $60.00\r\n\r\n\r\nThank You!\r\n-----------------------------\r\n\r\n", "attach_pdf"=>"attach", "commit"=>"Send Invoice", "id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mClient Load (0.2ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1
+Rendered invoices_mailer/send_invoice.text.erb (0.5ms)
+
+Sent mail to paul.e.jolley@gmail.com (402ms)
+Date: Sat, 04 Feb 2012 02:30:09 -1000
+From: from@example.org
+To: paul.e.jolley@gmail.com
+Message-ID: <4f2d24d154fa2_27d83fed7a6113fc781a1@Paul-Jolleys-MacBook-Pro.local.mail>
+Subject: Invoice #INV-1
+Mime-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="--==_mimepart_4f2d24d135780_27d83fed7a6113fc779c6";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+
+----==_mimepart_4f2d24d135780_27d83fed7a6113fc779c6
+Date: Sat, 04 Feb 2012 02:30:09 -1000
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Content-ID: <4f2d24d13b7c9_27d83fed7a6113fc7804c@Paul-Jolleys-MacBook-Pro.local.mail>
+
+
+
+-----------------------------
+Invoice Summary
+-----------------------------
+
+Invoice Code: INV-1
+Issued: 04 Feb 11:38
+Due: 01 Mar 03:13
+Amount: $60.00
+
+
+Thank You!
+-----------------------------
+
+
+
+----==_mimepart_4f2d24d135780_27d83fed7a6113fc779c6
+Date: Sat, 04 Feb 2012 02:30:09 -1000
+Mime-Version: 1.0
+Content-Type: application/pdf;
+ charset=UTF-8;
+ filename=invoice-INV-1.pdf
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename=invoice-INV-1.pdf
+Content-ID: <4f2d24d1116b0_27d83fed7a6113fc778e3@Paul-Jolleys-MacBook-Pro.local.mail>
+
+JVBERi0xLjMKJf////8KMSAwIG9iago8PCAvQ3JlYXRvciA8ZmVmZjAwNTAw
+MDcyMDA2MTAwNzcwMDZlPgovUHJvZHVjZXIgPGZlZmYwMDUwMDA3MjAwNjEw
+MDc3MDA2ZT4KPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL0NhdGFsb2cK
+L1BhZ2VzIDMgMCBSCj4+CmVuZG9iagozIDAgb2JqCjw8IC9UeXBlIC9QYWdl
+cwovQ291bnQgMQovS2lkcyBbNSAwIFJdCj4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggNTAyOAo+PgpzdHJlYW0KcQoKQlQKMzYgNzM4LjA1IFRkCi9G
+MS4wIDI1IFRmCls8NDk2ZT4gMjAgPDc2PiAyNSA8NmY2OTYzNjUyMDIzNDk0
+ZTU2MmQzMT5dIFRKCkVUCgoKQlQKMzYgNzE4LjQ4NCBUZAovRjEuMCAxMiBU
+ZgpbPDUwPiA0MCA8NjE3NTZjPl0gVEoKRVQKCgpCVAozNiA3MDQuNjEyIFRk
+Ci9GMS4wIDEyIFRmCls8MzEzMjMzMzQ+XSBUSgpFVAoKCkJUCjM2IDY5MC43
+Mzk5OTk5OTk5OTk5IFRkCi9GMS4wIDEyIFRmCls8MzgzMDMxMzQzNzMyMzgz
+MjM0MzI+XSBUSgpFVAoKMSB3Ci9EZXZpY2VSR0IgQ1MKMC4wMDAgMC4wMDAg
+MC4wMDAgU0NOCjM2LjAwMCA2NjUuNDg0IG0KMTQ2LjQwMCA2NjUuNDg0IGwK
+UwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjM2LjAwMCA2NDEuMjA0IG0K
+MTQ2LjQwMCA2NDEuMjA0IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NO
+CjM2LjAwMCA2NjUuOTg0IG0KMzYuMDAwIDY0MC43MDQgbApTCjEgdwowLjAw
+MCAwLjAwMCAwLjAwMCBTQ04KMTQ2LjQwMCA2NjUuOTg0IG0KMTQ2LjQwMCA2
+NDAuNzA0IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCgpCVAo0MSA2
+NDkuMDM1OTk5OTk5OTk5OCBUZAovRjIuMCAxMiBUZgpbPDUxNzQ3OT4gODAg
+PDJlPl0gVEoKRVQKCi9EZXZpY2VSR0IgY3MKMC4wMDAgMC4wMDAgMC4wMDAg
+c2NuCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KMTQ2LjQwMCA2NjUuNDg0
+IG0KMjkyLjk4MSA2NjUuNDg0IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAg
+U0NOCjE0Ni40MDAgNjQxLjIwNCBtCjI5Mi45ODEgNjQxLjIwNCBsClMKMSB3
+CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoxNDYuNDAwIDY2NS45ODQgbQoxNDYu
+NDAwIDY0MC43MDQgbApTCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KMjky
+Ljk4MSA2NjUuOTg0IG0KMjkyLjk4MSA2NDAuNzA0IGwKUwoxIHcKMC4wMDAg
+MC4wMDAgMC4wMDAgU0NOCgpCVAoxNTEuMzk5Njg4NDcyODY4MDQgNjQ5LjAz
+NTk5OTk5OTk5OTggVGQKL0YyLjAgMTIgVGYKWzw0NDY1NzM2MzcyNjk3MDc0
+Njk2ZjZlPl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4w
+MDAgMC4wMDAgMC4wMDAgU0NOCjI5Mi45ODEgNjY1LjQ4NCBtCjQyNy4xMzkg
+NjY1LjQ4NCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoyOTIuOTgx
+IDY0MS4yMDQgbQo0MjcuMTM5IDY0MS4yMDQgbApTCjEgdwowLjAwMCAwLjAw
+MCAwLjAwMCBTQ04KMjkyLjk4MSA2NjUuOTg0IG0KMjkyLjk4MSA2NDAuNzA0
+IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjQyNy4xMzkgNjY1Ljk4
+NCBtCjQyNy4xMzkgNjQwLjcwNCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAw
+IFNDTgoKQlQKMjk3Ljk4MTI0MzQ3MDU5NjUgNjQ5LjAzNTk5OTk5OTk5OTgg
+VGQKL0YyLjAgMTIgVGYKWzw0MTZkNmY3NTZlNzQ+XSBUSgpFVAoKMC4wMDAg
+MC4wMDAgMC4wMDAgc2NuCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KNDI3
+LjEzOSA2NjUuNDg0IG0KNTc2LjAwMCA2NjUuNDg0IGwKUwoxIHcKMC4wMDAg
+MC4wMDAgMC4wMDAgU0NOCjQyNy4xMzkgNjQxLjIwNCBtCjU3Ni4wMDAgNjQx
+LjIwNCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgo0MjcuMTM5IDY2
+NS45ODQgbQo0MjcuMTM5IDY0MC43MDQgbApTCjEgdwowLjAwMCAwLjAwMCAw
+LjAwMCBTQ04KNTc2LjAwMCA2NjUuOTg0IG0KNTc2LjAwMCA2NDAuNzA0IGwK
+UwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCgpCVAo0MzIuMTM5MjcyMzA3
+NzkyMTcgNjQ5LjAzNTk5OTk5OTk5OTggVGQKL0YyLjAgMTIgVGYKWzw1ND4g
+ODAgPDZmNzQ2MTZjPl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgox
+IHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjM2LjAwMCA2NDEuMjA0IG0KMTQ2
+LjQwMCA2NDEuMjA0IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjM2
+LjAwMCA2MTcuMzMyIG0KMTQ2LjQwMCA2MTcuMzMyIGwKUwoxIHcKMC4wMDAg
+MC4wMDAgMC4wMDAgU0NOCjM2LjAwMCA2NDEuNzA0IG0KMzYuMDAwIDYxNi44
+MzIgbApTCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KMTQ2LjQwMCA2NDEu
+NzA0IG0KMTQ2LjQwMCA2MTYuODMyIGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4w
+MDAgU0NOCgpCVAo0MSA2MjQuOTU5OTk5OTk5OTk5OCBUZAovRjEuMCAxMiBU
+ZgpbPDMyPl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4w
+MDAgMC4wMDAgMC4wMDAgU0NOCjE0Ni40MDAgNjQxLjIwNCBtCjI5Mi45ODEg
+NjQxLjIwNCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoxNDYuNDAw
+IDYxNy4zMzIgbQoyOTIuOTgxIDYxNy4zMzIgbApTCjEgdwowLjAwMCAwLjAw
+MCAwLjAwMCBTQ04KMTQ2LjQwMCA2NDEuNzA0IG0KMTQ2LjQwMCA2MTYuODMy
+IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjI5Mi45ODEgNjQxLjcw
+NCBtCjI5Mi45ODEgNjE2LjgzMiBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAw
+IFNDTgoKQlQKMTUxLjM5OTY4ODQ3Mjg2ODA0IDYyNC45NTk5OTk5OTk5OTk4
+IFRkCi9GMS4wIDEyIFRmCls8NDE3MDcwNmM2NT5dIFRKCkVUCgowLjAwMCAw
+LjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoyOTIu
+OTgxIDY0MS4yMDQgbQo0MjcuMTM5IDY0MS4yMDQgbApTCjEgdwowLjAwMCAw
+LjAwMCAwLjAwMCBTQ04KMjkyLjk4MSA2MTcuMzMyIG0KNDI3LjEzOSA2MTcu
+MzMyIGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjI5Mi45ODEgNjQx
+LjcwNCBtCjI5Mi45ODEgNjE2LjgzMiBsClMKMSB3CjAuMDAwIDAuMDAwIDAu
+MDAwIFNDTgo0MjcuMTM5IDY0MS43MDQgbQo0MjcuMTM5IDYxNi44MzIgbApT
+CjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KCkJUCjI5Ny45ODEyNDM0NzA1
+OTY1IDYyNC45NTk5OTk5OTk5OTk4IFRkCi9GMS4wIDEyIFRmCls8MjQzMzMw
+MmUzMDMwPl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4w
+MDAgMC4wMDAgMC4wMDAgU0NOCjQyNy4xMzkgNjQxLjIwNCBtCjU3Ni4wMDAg
+NjQxLjIwNCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgo0MjcuMTM5
+IDYxNy4zMzIgbQo1NzYuMDAwIDYxNy4zMzIgbApTCjEgdwowLjAwMCAwLjAw
+MCAwLjAwMCBTQ04KNDI3LjEzOSA2NDEuNzA0IG0KNDI3LjEzOSA2MTYuODMy
+IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjU3Ni4wMDAgNjQxLjcw
+NCBtCjU3Ni4wMDAgNjE2LjgzMiBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAw
+IFNDTgoKQlQKNDMyLjEzOTI3MjMwNzc5MjE3IDYyNC45NTk5OTk5OTk5OTk4
+IFRkCi9GMS4wIDEyIFRmCls8MjQzNjMwMmUzMDMwPl0gVEoKRVQKCjAuMDAw
+IDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAu
+MDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NO
+CjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAg
+U0NOCgpCVAozNzMuMTIzMjcyMzA3NzkyMTUgNjAxLjA4Nzk5OTk5OTk5OTcg
+VGQKL0YxLjAgMTIgVGYKWzw0NDY5NzM2MzZmNzU2ZTc0M2E+XSBUSgpFVAoK
+MC4wMDAgMC4wMDAgMC4wMDAgc2NuCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBT
+Q04KCkJUCjQzMi4xMzkyNzIzMDc3OTIxNyA2MDEuMDg3OTk5OTk5OTk5NyBU
+ZAovRjEuMCAxMiBUZgpbPDMwMmUzMDI1Pl0gVEoKRVQKCjAuMDAwIDAuMDAw
+IDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAuMDAwIDAu
+MDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAuMDAw
+IDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCgpC
+VAozNzEuNzc5MjcyMzA3NzkyMTYgNTc3LjIxNTk5OTk5OTk5OTggVGQKL0Yx
+LjAgMTIgVGYKWzw1Mzc1NjIyZDc0NmY3NDYxNmMzYT5dIFRKCkVUCgowLjAw
+MCAwLjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoK
+QlQKNDMyLjEzOTI3MjMwNzc5MjE3IDU3Ny4yMTU5OTk5OTk5OTk4IFRkCi9G
+MS4wIDEyIFRmCls8MjQzNjMwMmUzMDMwPl0gVEoKRVQKCjAuMDAwIDAuMDAw
+IDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAuMDAwIDAu
+MDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAuMDAw
+IDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCgpC
+VAozODguOTI3MjcyMzA3NzkyMiA1NTMuMzQzOTk5OTk5OTk5OCBUZAovRjEu
+MCAxMiBUZgpbPDU0PiAxMjAgPDYxNzg+IDMwIDw2NTczM2E+XSBUSgpFVAoK
+MC4wMDAgMC4wMDAgMC4wMDAgc2NuCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBT
+Q04KCkJUCjQzMi4xMzkyNzIzMDc3OTIxNyA1NTMuMzQzOTk5OTk5OTk5OCBU
+ZAovRjEuMCAxMiBUZgpbPDI0MzAyZTMwMzAyMDI4MzAyZTMwMjUyOT5dIFRK
+CkVUCgowLjAwMCAwLjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAuMDAwIDAu
+MDAwIFNDTgowLjAwMCAwLjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAuMDAw
+IDAuMDAwIFNDTgowLjAwMCAwLjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAu
+MDAwIDAuMDAwIFNDTgoKQlQKMzkxLjQzNTI3MjMwNzc5MjE2IDUyOS4yNjc5
+OTk5OTk5OTk4IFRkCi9GMi4wIDEyIFRmCls8NTQ+IDgwIDw2Zjc0NjE2YzNh
+Pl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4w
+MDAgMC4wMDAgU0NOCgpCVAo0MzIuMTM5MjcyMzA3NzkyMTcgNTI5LjI2Nzk5
+OTk5OTk5OTggVGQKL0YyLjAgMTIgVGYKWzwyNDM2MzAyZTMwMzA+XSBUSgpF
+VAoKMC4wMDAgMC4wMDAgMC4wMDAgc2NuCgpCVAozNiA0ODguNTExOTk5OTk5
+OTk5ODMgVGQKL0YxLjAgMTggVGYKWzw1ND4gMTIwIDw2NTcyPiAtMjUgPDZk
+NzM+XSBUSgpFVAoKCkJUCjM2IDQ3Mi4wMTE5OTk5OTk5OTk4MyBUZAovRjEu
+MCAxMiBUZgpbPDRjNjU2MTY3NjE2YzIwNzM3NDc1NjY2Nj5dIFRKCkVUCgoK
+QlQKMzYgMzYuMCBUZAovRjEuMCAxMiBUZgpbPDQ3NjU2ZTY1NzI+IDEwIDw2
+MTc0NjU2NDIwNjE3NDIwMzAzNDIwNDY+IDMwIDw2NTYyMjAzMDMyM2EzMzMw
+Pl0gVEoKRVQKClEKCmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlw
+ZSAvUGFnZQovUGFyZW50IDMgMCBSCi9NZWRpYUJveCBbMCAwIDYxMi4wIDc5
+Mi4wXQovQ29udGVudHMgNCAwIFIKL1Jlc291cmNlcyA8PCAvUHJvY1NldCBb
+L1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSV0KL0ZvbnQgPDwg
+L0YxLjAgNiAwIFIKL0YyLjAgNyAwIFIKPj4KPj4KPj4KZW5kb2JqCjYgMCBv
+YmoKPDwgL1R5cGUgL0ZvbnQKL1N1YnR5cGUgL1R5cGUxCi9CYXNlRm9udCAv
+SGVsdmV0aWNhCi9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nCj4+CmVuZG9i
+ago3IDAgb2JqCjw8IC9UeXBlIC9Gb250Ci9TdWJ0eXBlIC9UeXBlMQovQmFz
+ZUZvbnQgL0hlbHZldGljYS1Cb2xkCi9FbmNvZGluZyAvV2luQW5zaUVuY29k
+aW5nCj4+CmVuZG9iagp4cmVmCjAgOAowMDAwMDAwMDAwIDY1NTM1IGYgCjAw
+MDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDEwOSAwMDAwMCBuIAowMDAwMDAw
+MTU4IDAwMDAwIG4gCjAwMDAwMDAyMTUgMDAwMDAgbiAKMDAwMDAwNTI5NSAw
+MDAwMCBuIAowMDAwMDA1NDg1IDAwMDAwIG4gCjAwMDAwMDU1ODIgMDAwMDAg
+biAKdHJhaWxlcgo8PCAvU2l6ZSA4Ci9Sb290IDIgMCBSCi9JbmZvIDEgMCBS
+Cj4+CnN0YXJ0eHJlZgo1Njg0CiUlRU9GCg==
+
+
+----==_mimepart_4f2d24d135780_27d83fed7a6113fc779c6--
+  [1m[36mAREL (0.4ms)[0m  [1mUPDATE "invoices" SET "status" = 'sent', "updated_at" = '2012-02-04 12:30:09.629358' WHERE "invoices"."id" = 1[0m
+Redirected to http://localhost:5000/admin/invoices/1
+Completed 302 Found in 4076ms
+
+
+Started GET "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 02:30:09 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.7ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (137.3ms)
+Completed 200 OK in 246ms (Views: 143.2ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/admin/invoices/1/send_invoice" for 127.0.0.1 at 2012-02-04 02:35:46 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#send_invoice as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1
+Rendered admin/invoices/send_invoice.html.erb within layouts/active_admin (124.0ms)
+Completed 200 OK in 235ms (Views: 130.7ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/admin/invoices/1/dispatch_invoice" for 127.0.0.1 at 2012-02-04 02:35:49 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#dispatch_invoice as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tBgkJ5BgsjIjDDJbzcDsMsRv3fd20MTs9dAa6dYSqCw=", "recipients"=>"paul.e.jolley@gmail.com", "subject"=>"Invoice #INV-1", "message"=>"\r\n\r\n-----------------------------\r\nInvoice Summary\r\n-----------------------------\r\n\r\nInvoice Code: INV-1\r\nIssued: 04 Feb 11:38\r\nDue: 01 Mar 03:13\r\nAmount: $60.00\r\n\r\n\r\nThank You!\r\n-----------------------------\r\n\r\n", "attach_pdf"=>"attach", "commit"=>"Send Invoice", "id"=>"1"}
+  [1m[36mAdminUser Load (71.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1[0m
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+Rendered invoices_mailer/send_invoice.text.erb (0.5ms)
+
+Sent mail to paul.e.jolley@gmail.com (97ms)
+Date: Sat, 04 Feb 2012 02:35:49 -1000
+From: from@example.org
+To: paul.e.jolley@gmail.com
+Message-ID: <4f2d26257b066_27d83fed79c5f3f47857d@Paul-Jolleys-MacBook-Pro.local.mail>
+Subject: Invoice #INV-1
+Mime-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="--==_mimepart_4f2d2625772ad_27d83fed79c5f3f478320";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+
+----==_mimepart_4f2d2625772ad_27d83fed79c5f3f478320
+Date: Sat, 04 Feb 2012 02:35:49 -1000
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Content-ID: <4f2d262579994_27d83fed79c5f3f478476@Paul-Jolleys-MacBook-Pro.local.mail>
+
+
+
+-----------------------------
+Invoice Summary
+-----------------------------
+
+Invoice Code: INV-1
+Issued: 04 Feb 11:38
+Due: 01 Mar 03:13
+Amount: $60.00
+
+
+Thank You!
+-----------------------------
+
+
+
+----==_mimepart_4f2d2625772ad_27d83fed79c5f3f478320
+Date: Sat, 04 Feb 2012 02:35:49 -1000
+Mime-Version: 1.0
+Content-Type: application/pdf;
+ charset=UTF-8;
+ filename=invoice-INV-1.pdf
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename=invoice-INV-1.pdf
+Content-ID: <4f2d262572cf8_27d83fed79c5f3f4782fc@Paul-Jolleys-MacBook-Pro.local.mail>
+
+JVBERi0xLjMKJf////8KMSAwIG9iago8PCAvQ3JlYXRvciA8ZmVmZjAwNTAw
+MDcyMDA2MTAwNzcwMDZlPgovUHJvZHVjZXIgPGZlZmYwMDUwMDA3MjAwNjEw
+MDc3MDA2ZT4KPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL0NhdGFsb2cK
+L1BhZ2VzIDMgMCBSCj4+CmVuZG9iagozIDAgb2JqCjw8IC9UeXBlIC9QYWdl
+cwovQ291bnQgMQovS2lkcyBbNSAwIFJdCj4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggNTAyOAo+PgpzdHJlYW0KcQoKQlQKMzYgNzM4LjA1IFRkCi9G
+MS4wIDI1IFRmCls8NDk2ZT4gMjAgPDc2PiAyNSA8NmY2OTYzNjUyMDIzNDk0
+ZTU2MmQzMT5dIFRKCkVUCgoKQlQKMzYgNzE4LjQ4NCBUZAovRjEuMCAxMiBU
+ZgpbPDUwPiA0MCA8NjE3NTZjPl0gVEoKRVQKCgpCVAozNiA3MDQuNjEyIFRk
+Ci9GMS4wIDEyIFRmCls8MzEzMjMzMzQ+XSBUSgpFVAoKCkJUCjM2IDY5MC43
+Mzk5OTk5OTk5OTk5IFRkCi9GMS4wIDEyIFRmCls8MzgzMDMxMzQzNzMyMzgz
+MjM0MzI+XSBUSgpFVAoKMSB3Ci9EZXZpY2VSR0IgQ1MKMC4wMDAgMC4wMDAg
+MC4wMDAgU0NOCjM2LjAwMCA2NjUuNDg0IG0KMTQ2LjQwMCA2NjUuNDg0IGwK
+UwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjM2LjAwMCA2NDEuMjA0IG0K
+MTQ2LjQwMCA2NDEuMjA0IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NO
+CjM2LjAwMCA2NjUuOTg0IG0KMzYuMDAwIDY0MC43MDQgbApTCjEgdwowLjAw
+MCAwLjAwMCAwLjAwMCBTQ04KMTQ2LjQwMCA2NjUuOTg0IG0KMTQ2LjQwMCA2
+NDAuNzA0IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCgpCVAo0MSA2
+NDkuMDM1OTk5OTk5OTk5OCBUZAovRjIuMCAxMiBUZgpbPDUxNzQ3OT4gODAg
+PDJlPl0gVEoKRVQKCi9EZXZpY2VSR0IgY3MKMC4wMDAgMC4wMDAgMC4wMDAg
+c2NuCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KMTQ2LjQwMCA2NjUuNDg0
+IG0KMjkyLjk4MSA2NjUuNDg0IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAg
+U0NOCjE0Ni40MDAgNjQxLjIwNCBtCjI5Mi45ODEgNjQxLjIwNCBsClMKMSB3
+CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoxNDYuNDAwIDY2NS45ODQgbQoxNDYu
+NDAwIDY0MC43MDQgbApTCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KMjky
+Ljk4MSA2NjUuOTg0IG0KMjkyLjk4MSA2NDAuNzA0IGwKUwoxIHcKMC4wMDAg
+MC4wMDAgMC4wMDAgU0NOCgpCVAoxNTEuMzk5Njg4NDcyODY4MDQgNjQ5LjAz
+NTk5OTk5OTk5OTggVGQKL0YyLjAgMTIgVGYKWzw0NDY1NzM2MzcyNjk3MDc0
+Njk2ZjZlPl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4w
+MDAgMC4wMDAgMC4wMDAgU0NOCjI5Mi45ODEgNjY1LjQ4NCBtCjQyNy4xMzkg
+NjY1LjQ4NCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoyOTIuOTgx
+IDY0MS4yMDQgbQo0MjcuMTM5IDY0MS4yMDQgbApTCjEgdwowLjAwMCAwLjAw
+MCAwLjAwMCBTQ04KMjkyLjk4MSA2NjUuOTg0IG0KMjkyLjk4MSA2NDAuNzA0
+IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjQyNy4xMzkgNjY1Ljk4
+NCBtCjQyNy4xMzkgNjQwLjcwNCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAw
+IFNDTgoKQlQKMjk3Ljk4MTI0MzQ3MDU5NjUgNjQ5LjAzNTk5OTk5OTk5OTgg
+VGQKL0YyLjAgMTIgVGYKWzw0MTZkNmY3NTZlNzQ+XSBUSgpFVAoKMC4wMDAg
+MC4wMDAgMC4wMDAgc2NuCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KNDI3
+LjEzOSA2NjUuNDg0IG0KNTc2LjAwMCA2NjUuNDg0IGwKUwoxIHcKMC4wMDAg
+MC4wMDAgMC4wMDAgU0NOCjQyNy4xMzkgNjQxLjIwNCBtCjU3Ni4wMDAgNjQx
+LjIwNCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgo0MjcuMTM5IDY2
+NS45ODQgbQo0MjcuMTM5IDY0MC43MDQgbApTCjEgdwowLjAwMCAwLjAwMCAw
+LjAwMCBTQ04KNTc2LjAwMCA2NjUuOTg0IG0KNTc2LjAwMCA2NDAuNzA0IGwK
+UwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCgpCVAo0MzIuMTM5MjcyMzA3
+NzkyMTcgNjQ5LjAzNTk5OTk5OTk5OTggVGQKL0YyLjAgMTIgVGYKWzw1ND4g
+ODAgPDZmNzQ2MTZjPl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgox
+IHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjM2LjAwMCA2NDEuMjA0IG0KMTQ2
+LjQwMCA2NDEuMjA0IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjM2
+LjAwMCA2MTcuMzMyIG0KMTQ2LjQwMCA2MTcuMzMyIGwKUwoxIHcKMC4wMDAg
+MC4wMDAgMC4wMDAgU0NOCjM2LjAwMCA2NDEuNzA0IG0KMzYuMDAwIDYxNi44
+MzIgbApTCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KMTQ2LjQwMCA2NDEu
+NzA0IG0KMTQ2LjQwMCA2MTYuODMyIGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4w
+MDAgU0NOCgpCVAo0MSA2MjQuOTU5OTk5OTk5OTk5OCBUZAovRjEuMCAxMiBU
+ZgpbPDMyPl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4w
+MDAgMC4wMDAgMC4wMDAgU0NOCjE0Ni40MDAgNjQxLjIwNCBtCjI5Mi45ODEg
+NjQxLjIwNCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoxNDYuNDAw
+IDYxNy4zMzIgbQoyOTIuOTgxIDYxNy4zMzIgbApTCjEgdwowLjAwMCAwLjAw
+MCAwLjAwMCBTQ04KMTQ2LjQwMCA2NDEuNzA0IG0KMTQ2LjQwMCA2MTYuODMy
+IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjI5Mi45ODEgNjQxLjcw
+NCBtCjI5Mi45ODEgNjE2LjgzMiBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAw
+IFNDTgoKQlQKMTUxLjM5OTY4ODQ3Mjg2ODA0IDYyNC45NTk5OTk5OTk5OTk4
+IFRkCi9GMS4wIDEyIFRmCls8NDE3MDcwNmM2NT5dIFRKCkVUCgowLjAwMCAw
+LjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoyOTIu
+OTgxIDY0MS4yMDQgbQo0MjcuMTM5IDY0MS4yMDQgbApTCjEgdwowLjAwMCAw
+LjAwMCAwLjAwMCBTQ04KMjkyLjk4MSA2MTcuMzMyIG0KNDI3LjEzOSA2MTcu
+MzMyIGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjI5Mi45ODEgNjQx
+LjcwNCBtCjI5Mi45ODEgNjE2LjgzMiBsClMKMSB3CjAuMDAwIDAuMDAwIDAu
+MDAwIFNDTgo0MjcuMTM5IDY0MS43MDQgbQo0MjcuMTM5IDYxNi44MzIgbApT
+CjEgdwowLjAwMCAwLjAwMCAwLjAwMCBTQ04KCkJUCjI5Ny45ODEyNDM0NzA1
+OTY1IDYyNC45NTk5OTk5OTk5OTk4IFRkCi9GMS4wIDEyIFRmCls8MjQzMzMw
+MmUzMDMwPl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4w
+MDAgMC4wMDAgMC4wMDAgU0NOCjQyNy4xMzkgNjQxLjIwNCBtCjU3Ni4wMDAg
+NjQxLjIwNCBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgo0MjcuMTM5
+IDYxNy4zMzIgbQo1NzYuMDAwIDYxNy4zMzIgbApTCjEgdwowLjAwMCAwLjAw
+MCAwLjAwMCBTQ04KNDI3LjEzOSA2NDEuNzA0IG0KNDI3LjEzOSA2MTYuODMy
+IGwKUwoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjU3Ni4wMDAgNjQxLjcw
+NCBtCjU3Ni4wMDAgNjE2LjgzMiBsClMKMSB3CjAuMDAwIDAuMDAwIDAuMDAw
+IFNDTgoKQlQKNDMyLjEzOTI3MjMwNzc5MjE3IDYyNC45NTk5OTk5OTk5OTk4
+IFRkCi9GMS4wIDEyIFRmCls8MjQzNjMwMmUzMDMwPl0gVEoKRVQKCjAuMDAw
+IDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAu
+MDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NO
+CjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAg
+U0NOCgpCVAozNzMuMTIzMjcyMzA3NzkyMTUgNjAxLjA4Nzk5OTk5OTk5OTcg
+VGQKL0YxLjAgMTIgVGYKWzw0NDY5NzM2MzZmNzU2ZTc0M2E+XSBUSgpFVAoK
+MC4wMDAgMC4wMDAgMC4wMDAgc2NuCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBT
+Q04KCkJUCjQzMi4xMzkyNzIzMDc3OTIxNyA2MDEuMDg3OTk5OTk5OTk5NyBU
+ZAovRjEuMCAxMiBUZgpbPDMwMmUzMDI1Pl0gVEoKRVQKCjAuMDAwIDAuMDAw
+IDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAuMDAwIDAu
+MDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAuMDAw
+IDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCgpC
+VAozNzEuNzc5MjcyMzA3NzkyMTYgNTc3LjIxNTk5OTk5OTk5OTggVGQKL0Yx
+LjAgMTIgVGYKWzw1Mzc1NjIyZDc0NmY3NDYxNmMzYT5dIFRKCkVUCgowLjAw
+MCAwLjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAuMDAwIDAuMDAwIFNDTgoK
+QlQKNDMyLjEzOTI3MjMwNzc5MjE3IDU3Ny4yMTU5OTk5OTk5OTk4IFRkCi9G
+MS4wIDEyIFRmCls8MjQzNjMwMmUzMDMwPl0gVEoKRVQKCjAuMDAwIDAuMDAw
+IDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAuMDAwIDAu
+MDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCjAuMDAw
+IDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4wMDAgMC4wMDAgU0NOCgpC
+VAozODguOTI3MjcyMzA3NzkyMiA1NTMuMzQzOTk5OTk5OTk5OCBUZAovRjEu
+MCAxMiBUZgpbPDU0PiAxMjAgPDYxNzg+IDMwIDw2NTczM2E+XSBUSgpFVAoK
+MC4wMDAgMC4wMDAgMC4wMDAgc2NuCjEgdwowLjAwMCAwLjAwMCAwLjAwMCBT
+Q04KCkJUCjQzMi4xMzkyNzIzMDc3OTIxNyA1NTMuMzQzOTk5OTk5OTk5OCBU
+ZAovRjEuMCAxMiBUZgpbPDI0MzAyZTMwMzAyMDI4MzAyZTMwMjUyOT5dIFRK
+CkVUCgowLjAwMCAwLjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAuMDAwIDAu
+MDAwIFNDTgowLjAwMCAwLjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAuMDAw
+IDAuMDAwIFNDTgowLjAwMCAwLjAwMCAwLjAwMCBzY24KMSB3CjAuMDAwIDAu
+MDAwIDAuMDAwIFNDTgoKQlQKMzkxLjQzNTI3MjMwNzc5MjE2IDUyOS4yNjc5
+OTk5OTk5OTk4IFRkCi9GMi4wIDEyIFRmCls8NTQ+IDgwIDw2Zjc0NjE2YzNh
+Pl0gVEoKRVQKCjAuMDAwIDAuMDAwIDAuMDAwIHNjbgoxIHcKMC4wMDAgMC4w
+MDAgMC4wMDAgU0NOCgpCVAo0MzIuMTM5MjcyMzA3NzkyMTcgNTI5LjI2Nzk5
+OTk5OTk5OTggVGQKL0YyLjAgMTIgVGYKWzwyNDM2MzAyZTMwMzA+XSBUSgpF
+VAoKMC4wMDAgMC4wMDAgMC4wMDAgc2NuCgpCVAozNiA0ODguNTExOTk5OTk5
+OTk5ODMgVGQKL0YxLjAgMTggVGYKWzw1ND4gMTIwIDw2NTcyPiAtMjUgPDZk
+NzM+XSBUSgpFVAoKCkJUCjM2IDQ3Mi4wMTE5OTk5OTk5OTk4MyBUZAovRjEu
+MCAxMiBUZgpbPDRjNjU2MTY3NjE2YzIwNzM3NDc1NjY2Nj5dIFRKCkVUCgoK
+QlQKMzYgMzYuMCBUZAovRjEuMCAxMiBUZgpbPDQ3NjU2ZTY1NzI+IDEwIDw2
+MTc0NjU2NDIwNjE3NDIwMzAzNDIwNDY+IDMwIDw2NTYyMjAzMDMyM2EzMzM1
+Pl0gVEoKRVQKClEKCmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlw
+ZSAvUGFnZQovUGFyZW50IDMgMCBSCi9NZWRpYUJveCBbMCAwIDYxMi4wIDc5
+Mi4wXQovQ29udGVudHMgNCAwIFIKL1Jlc291cmNlcyA8PCAvUHJvY1NldCBb
+L1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSV0KL0ZvbnQgPDwg
+L0YxLjAgNiAwIFIKL0YyLjAgNyAwIFIKPj4KPj4KPj4KZW5kb2JqCjYgMCBv
+YmoKPDwgL1R5cGUgL0ZvbnQKL1N1YnR5cGUgL1R5cGUxCi9CYXNlRm9udCAv
+SGVsdmV0aWNhCi9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nCj4+CmVuZG9i
+ago3IDAgb2JqCjw8IC9UeXBlIC9Gb250Ci9TdWJ0eXBlIC9UeXBlMQovQmFz
+ZUZvbnQgL0hlbHZldGljYS1Cb2xkCi9FbmNvZGluZyAvV2luQW5zaUVuY29k
+aW5nCj4+CmVuZG9iagp4cmVmCjAgOAowMDAwMDAwMDAwIDY1NTM1IGYgCjAw
+MDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDEwOSAwMDAwMCBuIAowMDAwMDAw
+MTU4IDAwMDAwIG4gCjAwMDAwMDAyMTUgMDAwMDAgbiAKMDAwMDAwNTI5NSAw
+MDAwMCBuIAowMDAwMDA1NDg1IDAwMDAwIG4gCjAwMDAwMDU1ODIgMDAwMDAg
+biAKdHJhaWxlcgo8PCAvU2l6ZSA4Ci9Sb290IDIgMCBSCi9JbmZvIDEgMCBS
+Cj4+CnN0YXJ0eHJlZgo1Njg0CiUlRU9GCg==
+
+
+----==_mimepart_4f2d2625772ad_27d83fed79c5f3f478320--
+Redirected to http://localhost:5000/admin/invoices/1
+Completed 302 Found in 476ms
+
+
+Started GET "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 02:35:49 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (200.0ms)
+Completed 200 OK in 249ms (Views: 206.9ms | ActiveRecord: 73.6ms)
+
+
+Started GET "/admin/invoices/1" for 127.0.0.1 at 2012-02-04 02:52:47 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."id" = 1 LIMIT 1[0m
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/show.html.arb (149.6ms)
+Completed 200 OK in 265ms (Views: 155.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 03:39:08 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.7ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 5[0m
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE (created_at >= '2012-02-01 00:00:00')
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')[0m
+  [1m[35mInvoice Load (0.1ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/dashboard/index.html.arb (215.2ms)
+Completed 200 OK in 270ms (Views: 241.1ms | ActiveRecord: 2.3ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 03:40:21 -1000
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+
+LoadError (no such file to load -- sqlite3):
+  
+
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (13.4ms)
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.4ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Elliott/Rails/ai/config/environment.rb:5)
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb", "/Users/Elliott/Rails/ai/app/admin/invoices.rb"]]
+[nil, []]
+[nil, ["/Users/Elliott/Rails/ai/app/admin"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb"]]
+[nil, ["/Users/Elliott/Rails/ai/app/admin", "/Users/Elliott/Rails/ai/app/admin/admin_users.rb", "/Users/Elliott/Rails/ai/app/admin/clients.rb", "/Users/Elliott/Rails/ai/app/admin/dashboards.rb"]]
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (38.4ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TIME ZONE
+  [1m[36mSQL (8.4ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ AND schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mSQL (26.7ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW search_path[0m
+  [1m[35mSQL (9.3ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'schema_migrations'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (4.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_info'
+ AND schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mSQL (6.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (2.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateAdminNotes (20110818171143)
+  [1m[35mSQL (0.4ms)[0m  BEGIN
+  [1m[36mSQL (11.0ms)[0m  [1mCREATE TABLE "admin_notes" ("id" serial primary key, "resource_id" integer NOT NULL, "resource_type" character varying(255) NOT NULL, "admin_user_id" integer, "admin_user_type" character varying(255), "body" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.8ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'admin_notes'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (1.6ms)[0m  [1mCREATE INDEX "index_admin_notes_on_resource_type_and_resource_id" ON "admin_notes" ("resource_type", "resource_id")[0m
+  [1m[35mSQL (1.5ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'admin_notes'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mColumns for index index_admin_notes_on_resource_type_and_resource_id on admin_notes (0.8ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (3,2)
+[0m
+  [1m[35mSQL (1.5ms)[0m  CREATE INDEX "index_admin_notes_on_admin_user_type_and_admin_user_id" ON "admin_notes" ("admin_user_type", "admin_user_id")
+  [1m[36mSQL (4.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (4.5ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (2.0ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818171143')
+  [1m[36mPK and serial sequence (4.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (2.1ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (0.7ms)[0m  [1mCOMMIT[0m
+Migrating to MoveAdminNotesToComments (20110818171144)
+  [1m[35mSQL (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.8ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'admin_notes'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mColumns for index index_admin_notes_on_admin_user_type_and_admin_user_id on admin_notes (0.4ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (5,4)
+  [1m[36mColumns for index index_admin_notes_on_resource_type_and_resource_id on admin_notes (0.3ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (3,2)
+[0m
+  [1m[35mSQL (4.3ms)[0m  DROP INDEX "index_admin_notes_on_admin_user_type_and_admin_user_id"
+  [1m[36mSQL (0.4ms)[0m  [1mALTER TABLE "admin_notes" RENAME TO "active_admin_comments"[0m
+  [1m[35mSQL (0.3ms)[0m  ALTER TABLE "active_admin_comments" RENAME COLUMN "admin_user_type" TO "author_type"
+  [1m[36mSQL (0.3ms)[0m  [1mALTER TABLE "active_admin_comments" RENAME COLUMN "admin_user_id" TO "author_id"[0m
+  [1m[35mSQL (0.5ms)[0m  ALTER TABLE "active_admin_comments" ADD COLUMN "namespace" character varying(255)
+  [1m[36mSQL (1.9ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'active_admin_comments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mColumns for index index_admin_notes_on_resource_type_and_resource_id on active_admin_comments (0.6ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (3,2)
+  [1m[36mSQL (1.3ms)[0m  [1mCREATE INDEX "index_active_admin_comments_on_namespace" ON "active_admin_comments" ("namespace")[0m
+  [1m[35mSQL (1.8ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'active_admin_comments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mColumns for index index_active_admin_comments_on_namespace on active_admin_comments (0.4ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (9)
+[0m
+  [1m[35mColumns for index index_admin_notes_on_resource_type_and_resource_id on active_admin_comments (0.3ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (3,2)
+  [1m[36mSQL (1.3ms)[0m  [1mCREATE INDEX "index_active_admin_comments_on_author_type_and_author_id" ON "active_admin_comments" ("author_type", "author_id")[0m
+DEPRECATION WARNING: Active Admin: ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace. (called from up at /Users/Elliott/Rails/ai/db/migrate/20110818171144_move_admin_notes_to_comments.rb:12)
+DEPRECATION WARNING: Active Admin: ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace. (called from up at /Users/Elliott/Rails/ai/db/migrate/20110818171144_move_admin_notes_to_comments.rb:13)
+  [1m[35mSQL (9.2ms)[0m  UPDATE active_admin_comments SET namespace='admin'
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (3.1ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (1.8ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818171144')
+  [1m[36mPK and serial sequence (3.2ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (1.8ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (3.6ms)[0m  [1mCOMMIT[0m
+Migrating to DeviseCreateAdminUsers (20110818211142)
+  [1m[35mSQL (0.4ms)[0m  BEGIN
+  [1m[36mSQL (5.7ms)[0m  [1mCREATE TABLE "admin_users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(128) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (3.5ms)[0m  [1mSELECT 1 FROM "admin_users" WHERE ("admin_users"."email" = 'admin@example.com') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'admin_users'
+ AND schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (3.6ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"admin_users"'::regclass
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "admin_users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "sign_in_count", "current_sign_in_at", "last_sign_in_at", "current_sign_in_ip", "last_sign_in_ip", "created_at", "updated_at") VALUES ('admin@example.com', '$2a$10$5.ryHmzVWj5nK3g.ArtDbeMJ2LLnOi8tCjzSrenUkYWmVqUzNv57C', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, '2012-02-05 00:14:59.078594', '2012-02-05 00:14:59.078594') RETURNING "id"[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'admin_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (1.6ms)[0m  [1mCREATE UNIQUE INDEX "index_admin_users_on_email" ON "admin_users" ("email")[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'admin_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mColumns for index index_admin_users_on_email on admin_users (0.6ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16414
+ AND a.attnum IN (2)
+[0m
+  [1m[35mSQL (3.9ms)[0m  CREATE UNIQUE INDEX "index_admin_users_on_reset_password_token" ON "admin_users" ("reset_password_token")
+  [1m[36mSQL (1.4ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (3.4ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (1.8ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818211142')
+  [1m[36mPK and serial sequence (3.2ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (1.7ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (0.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateClients (20110818214436)
+  [1m[35mSQL (0.3ms)[0m  BEGIN
+  [1m[36mSQL (5.2ms)[0m  [1mCREATE TABLE "clients" ("id" serial primary key, "name" character varying(255), "address" character varying(255), "phone" character varying(255), "email" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.2ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (1.8ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110818214436')[0m
+  [1m[35mPK and serial sequence (3.3ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (2.0ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (1.0ms)[0m  COMMIT
+Migrating to CreateInvoices (20110818220252)
+  [1m[36mSQL (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (5.5ms)[0m  CREATE TABLE "invoices" ("id" serial primary key, "code" character varying(255), "notes" text, "terms" text, "status" character varying(255), "due_date" timestamp, "tax" float, "discount" float, "client_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (3.8ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (1.9ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110818220252')
+  [1m[36mPK and serial sequence (3.6ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (1.6ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateItems (20110818222838)
+  [1m[35mSQL (0.3ms)[0m  BEGIN
+  [1m[36mSQL (3.6ms)[0m  [1mCREATE TABLE "items" ("id" serial primary key, "quantity" integer, "amount" float, "description" character varying(255), "invoice_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.2ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (1.4ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110818222838')[0m
+  [1m[35mPK and serial sequence (3.2ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (1.7ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (21.1ms)[0m  COMMIT
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.3ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.2ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (0.7ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TIME ZONE
+  [1m[36mSQL (6.7ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ AND schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mSQL (8.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (4.8ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"active_admin_comments"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (5.0ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"active_admin_comments"'::regclass
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW search_path[0m
+  [1m[35mSQL (3.6ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'active_admin_comments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mColumns for index index_active_admin_comments_on_author_type_and_author_id on active_admin_comments (0.9ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (5,4)
+[0m
+  [1m[35mColumns for index index_active_admin_comments_on_namespace on active_admin_comments (0.4ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (9)
+  [1m[36mColumns for index index_admin_notes_on_resource_type_and_resource_id on active_admin_comments (0.3ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16399
+ AND a.attnum IN (3,2)
+[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.4ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"admin_users"'::regclass
+[0m
+  [1m[35mSQL (1.7ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'admin_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mColumns for index index_admin_users_on_email on admin_users (0.3ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16414
+ AND a.attnum IN (2)
+[0m
+  [1m[35mColumns for index index_admin_users_on_reset_password_token on admin_users (0.3ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16414
+ AND a.attnum IN (4)
+  [1m[36mSQL (1.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"clients"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (3.3ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"clients"'::regclass
+  [1m[36mSQL (1.5ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'clients'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (1.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"invoices"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.3ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"invoices"'::regclass
+[0m
+  [1m[35mSQL (1.4ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'invoices'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"items"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (3.3ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"items"'::regclass
+  [1m[36mSQL (1.6ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'items'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
