@@ -12,7 +12,7 @@ defaults: &defaults
       :user_name:      username
       :password:       password
     # Set to true when using Gmail
-    :enable_starttls_auto: true
+    :enable_starttls_auto: false
 
     # Set to true if you have Net::SMTPSyntaxError errors when sending email.
     # Rails has sometimes a problem when sending email from "Name <address@host.com>".

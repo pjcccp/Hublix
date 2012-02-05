@@ -2906,3 +2906,177 @@ Started GET "/admin/invoices/new" for 127.0.0.1 at 2012-02-04 17:22:55 -1000
   [1m[36mInvoice Load (0.6ms)[0m  [1mSELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 1[0m
 Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/new.html.arb (298.2ms)
 Completed 200 OK in 338ms (Views: 301.2ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-04 21:15:57 -1000
+[nil, ["/Users/Elliott/github/Hublix/app/admin", "/Users/Elliott/github/Hublix/app/admin/admin_users.rb", "/Users/Elliott/github/Hublix/app/admin/clients.rb", "/Users/Elliott/github/Hublix/app/admin/dashboards.rb", "/Users/Elliott/github/Hublix/app/admin/invoices.rb"]]
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mSQL (1.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdminUser Load (0.5ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mInvoice Load (0.7ms)[0m  [1mSELECT "invoices".* FROM "invoices" ORDER BY created_at desc LIMIT 5[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"invoices"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (2.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"clients"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mClient Load (0.4ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"clients"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mItem Load (0.5ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"items"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.5ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE (created_at >= '2012-02-01 00:00:00')
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"invoices"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.5ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."status" = 'paid' AND (created_at >= '2012-02-01 00:00:00')[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/dashboard/index.html.arb (80.4ms)
+Completed 200 OK in 170ms (Views: 82.6ms | ActiveRecord: 11.7ms)
+
+
+Started GET "/admin/clients" for 127.0.0.1 at 2012-02-04 21:16:02 -1000
+[nil, ["/Users/Elliott/github/Hublix/app/admin", "/Users/Elliott/github/Hublix/app/admin/admin_users.rb", "/Users/Elliott/github/Hublix/app/admin/clients.rb", "/Users/Elliott/github/Hublix/app/admin/dashboards.rb", "/Users/Elliott/github/Hublix/app/admin/invoices.rb"]]
+  Processing by Admin::ClientsController#index as HTML
+  [1m[35mSQL (1.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdminUser Load (9.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mClient Load (0.7ms)[0m  [1mSELECT "clients".* FROM "clients" ORDER BY "clients".id desc LIMIT 30 OFFSET 0[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"clients"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT COUNT(*) FROM "clients"[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/index.html.arb (218.7ms)
+Completed 200 OK in 277ms (Views: 226.6ms | ActiveRecord: 14.5ms)
+
+
+Started GET "/admin/invoices" for 127.0.0.1 at 2012-02-04 21:16:03 -1000
+[nil, ["/Users/Elliott/github/Hublix/app/admin", "/Users/Elliott/github/Hublix/app/admin/admin_users.rb", "/Users/Elliott/github/Hublix/app/admin/clients.rb", "/Users/Elliott/github/Hublix/app/admin/dashboards.rb", "/Users/Elliott/github/Hublix/app/admin/invoices.rb"]]
+  Processing by Admin::InvoicesController#index as HTML
+  [1m[35mSQL (1.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mInvoice Load (0.6ms)[0m  [1mSELECT "invoices".* FROM "invoices" ORDER BY "invoices".id desc LIMIT 30 OFFSET 0[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"invoices"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM "invoices"[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"invoices"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.5ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'draft'[0m
+  [1m[35mSQL (0.5ms)[0m  SELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'sent'
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM "invoices" WHERE "invoices"."status" = 'paid'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "invoices"
+  [1m[36mSQL (1.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"clients"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mClient Load (0.4ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."id" = 1 LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"clients"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mItem Load (0.6ms)[0m  SELECT "items".* FROM "items" WHERE ("items".invoice_id = 1)
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"items"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mClient Load (0.5ms)[0m  SELECT "clients".* FROM "clients"
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/index.html.arb (395.4ms)
+Completed 200 OK in 432ms (Views: 392.9ms | ActiveRecord: 11.4ms)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2012-02-04 21:16:04 -1000
+[nil, ["/Users/Elliott/github/Hublix/app/admin", "/Users/Elliott/github/Hublix/app/admin/admin_users.rb", "/Users/Elliott/github/Hublix/app/admin/clients.rb", "/Users/Elliott/github/Hublix/app/admin/dashboards.rb", "/Users/Elliott/github/Hublix/app/admin/invoices.rb"]]
+  Processing by Admin::UsersController#index as HTML
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"admin_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdminUser Load (0.7ms)[0m  SELECT "admin_users".* FROM "admin_users" ORDER BY "admin_users".id desc LIMIT 30 OFFSET 0
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT COUNT(*) FROM "admin_users"[0m
+Rendered /Users/Elliott/.rvm/gems/ruby-1.9.2-p290/gems/activeadmin-0.4.0/app/views/active_admin/resource/index.html.arb (53.5ms)
+Completed 200 OK in 82ms (Views: 58.8ms | ActiveRecord: 3.4ms)
